@@ -1,0 +1,146 @@
+<modification>
+	<id>Add Kana Language into Catalog</id>
+	<version>1</version>
+	<vqmver>1.0.0</vqmver>
+	<author>pineray</author>
+	<file name="catalog/language/*/account/address.php">
+		<operation>
+			<search position="before"><![CDATA[
+				$_['entry_firstname']
+			]]></search>
+			<add><![CDATA[
+				$_['entry_firstkana'] = 'めい:';
+				$_['entry_lastkana'] = 'せい:';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				$_['error_firstname']
+			]]></search>
+			<add><![CDATA[
+				$_['error_firstkana'] = '1文字以上32文字以内で入力してください';
+				$_['error_lastkana'] = '1文字以上32文字以内で入力してください';
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/*/account/edit.php">
+		<operation>
+			<search position="before"><![CDATA[
+				$_['entry_firstname']
+			]]></search>
+			<add><![CDATA[
+				$_['entry_firstkana'] = 'めい:';
+				$_['entry_lastkana'] = 'せい:';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				$_['error_firstname']
+			]]></search>
+			<add><![CDATA[
+				$_['error_firstkana'] = '1文字以上32文字以内で入力してください';
+				$_['error_lastkana'] = '1文字以上32文字以内で入力してください';
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/*/account/register.php">
+		<operation>
+			<search position="before"><![CDATA[
+				$_['entry_firstname']
+			]]></search>
+			<add><![CDATA[
+				$_['entry_firstkana'] = 'めい:';
+				$_['entry_lastkana'] = 'せい:';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				$_['error_firstname']
+			]]></search>
+			<add><![CDATA[
+				$_['error_firstkana'] = '1文字以上32文字以内で入力してください';
+				$_['error_lastkana'] = '1文字以上32文字以内で入力してください';
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/*/account/return.php">
+		<operation>
+			<search position="before"><![CDATA[
+				$_['entry_firstname']
+			]]></search>
+			<add><![CDATA[
+				$_['entry_firstkana'] = 'めい:';
+				$_['entry_lastkana'] = 'せい:';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				$_['error_firstname']
+			]]></search>
+			<add><![CDATA[
+				$_['error_firstkana'] = '1文字以上32文字以内で入力してください';
+				$_['error_lastkana'] = '1文字以上32文字以内で入力してください';
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/*/affiliate/edit.php">
+		<operation>
+			<search position="before"><![CDATA[
+				$_['entry_firstname']
+			]]></search>
+			<add><![CDATA[
+				$_['entry_firstkana'] = 'めい:';
+				$_['entry_lastkana'] = 'せい:';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				$_['error_firstname']
+			]]></search>
+			<add><![CDATA[
+				$_['error_firstkana'] = '1文字以上32文字以内で入力してください';
+				$_['error_lastkana'] = '1文字以上32文字以内で入力してください';
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/*/affiliate/register.php">
+		<operation>
+			<search position="before"><![CDATA[
+				$_['entry_firstname']
+			]]></search>
+			<add><![CDATA[
+				$_['entry_firstkana'] = 'めい:';
+				$_['entry_lastkana'] = 'せい:';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				$_['error_firstname']
+			]]></search>
+			<add><![CDATA[
+				$_['error_firstkana'] = '1文字以上32文字以内で入力してください';
+				$_['error_lastkana'] = '1文字以上32文字以内で入力してください';
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/*/checkout/checkout.php">
+		<operation>
+			<search position="before"><![CDATA[
+				$_['entry_firstname']
+			]]></search>
+			<add><![CDATA[
+				$_['entry_firstkana'] = 'めい:';
+				$_['entry_lastkana'] = 'せい:';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				$_['error_firstname']
+			]]></search>
+			<add><![CDATA[
+				$_['error_firstkana'] = '1文字以上32文字以内で入力してください';
+				$_['error_lastkana'] = '1文字以上32文字以内で入力してください';
+			]]></add>
+		</operation>
+	</file>
+</modification>
