@@ -60,7 +60,7 @@
 				} else {
 					$this->data['firstkana'] = '';
 				}
-				if (isset($this->request->post['salutation'])) {
+				if (isset($this->request->post['lastkana'])) {
 					$this->data['lastkana'] = $this->request->post['lastkana'];
 				} elseif (isset($address_info)) {
 					$this->data['lastkana'] = $address_info['lastkana'];
@@ -122,7 +122,7 @@
 				} else {
 					$this->data['firstkana'] = '';
 				}
-				if (isset($this->request->post['salutation'])) {
+				if (isset($this->request->post['lastkana'])) {
 					$this->data['lastkana'] = $this->request->post['lastkana'];
 				} elseif (isset($customer_info)) {
 					$this->data['lastkana'] = $customer_info['lastkana'];
@@ -211,7 +211,7 @@
 				} else {
 					$this->data['firstkana'] = '';
 				}
-				if (isset($this->request->post['salutation'])) {
+				if (isset($this->request->post['lastkana'])) {
 					$this->data['lastkana'] = $this->request->post['lastkana'];
 				} else {
 					$this->data['lastkana'] = '';
@@ -280,7 +280,7 @@
 				} else {
 					$this->data['firstkana'] = $this->customer->getFirstKana();
 				}
-				if (isset($this->request->post['salutation'])) {
+				if (isset($this->request->post['lastkana'])) {
 					$this->data['lastkana'] = $this->request->post['lastkana'];
 				} elseif (!empty($order_info)) {
 					$this->data['lastkana'] = $order_info['lastkana'];
@@ -342,7 +342,7 @@
 				} else {
 					$this->data['firstkana'] = '';
 				}
-				if (isset($this->request->post['salutation'])) {
+				if (isset($this->request->post['lastkana'])) {
 					$this->data['lastkana'] = $this->request->post['lastkana'];
 				} elseif (!empty($affiliate_info)) {
 					$this->data['lastkana'] = $affiliate_info['lastkana'];
@@ -402,7 +402,7 @@
 				} else {
 					$this->data['firstkana'] = '';
 				}
-				if (isset($this->request->post['salutation'])) {
+				if (isset($this->request->post['lastkana'])) {
 					$this->data['lastkana'] = $this->request->post['lastkana'];
 				} else {
 					$this->data['lastkana'] = '';
@@ -481,7 +481,7 @@
 				} else {
 					$this->data['firstkana'] = '';
 				}
-				if (isset($this->session->data['guest']['salutation'])) {
+				if (isset($this->session->data['guest']['lastkana'])) {
 					$this->data['lastkana'] = $this->session->data['guest']['lastkana'];
 				} else {
 					$this->data['lastkana'] = '';
@@ -542,7 +542,7 @@
 				} else {
 					$this->data['firstkana'] = '';
 				}
-				if (isset($this->session->data['guest']['salutation'])) {
+				if (isset($this->session->data['guest']['lastkana'])) {
 					$this->data['lastkana'] = $this->session->data['guest']['shipping']['lastkana'];
 				} else {
 					$this->data['lastkana'] = '';
