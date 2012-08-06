@@ -1,0 +1,569 @@
+<modification>
+	<id>Add Kana Field into Admin</id>
+	<version>1</version>
+	<vqmver>1.0.0</vqmver>
+	<author>pineray</author>
+	<file name="admin/controller/sale/affiliate.php">
+		<operation>
+			<search position="before"><![CDATA[
+				$this->data['entry_firstname'] = $this->language->get('entry_firstname');
+			]]></search>
+			<add><![CDATA[
+				$this->data['entry_firstkana'] = $this->language->get('entry_firstkana');
+				$this->data['entry_lastkana'] = $this->language->get('entry_lastkana');
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				if (isset($this->error['firstname'])) {
+			]]></search>
+			<add><![CDATA[
+				if (isset($this->error['firstkana'])) {
+					$this->data['error_firstkana'] = $this->error['firstkana'];
+				} else {
+					$this->data['error_firstkana'] = '';
+				}
+				if (isset($this->error['lastkana'])) {
+					$this->data['error_lastkana'] = $this->error['lastkana'];
+				} else {
+					$this->data['error_lastkana'] = '';
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				if (isset($this->request->post['firstname'])) {
+			]]></search>
+			<add><![CDATA[
+				if (isset($this->request->post['firstkana'])) {
+					$this->data['firstkana'] = $this->request->post['firstkana'];
+				} elseif (!empty($affiliate_info)) {
+					$this->data['firstkana'] = $affiliate_info['firstkana'];
+				} else {
+					$this->data['firstkana'] = '';
+				}
+				if (isset($this->request->post['lastkana'])) {
+					$this->data['lastkana'] = $this->request->post['lastkana'];
+				} elseif (!empty($affiliate_info)) {
+					$this->data['lastkana'] = $affiliate_info['lastkana'];
+				} else {
+					$this->data['lastkana'] = '';
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				private function validateForm() {
+			]]></search>
+			<add><![CDATA[
+				if ((utf8_strlen($this->request->post['firstkana']) < 1) || (utf8_strlen($this->request->post['firstkana']) > 32)) {
+			  		$this->error['firstkana'] = $this->language->get('error_firstkana');
+				}
+				if ((utf8_strlen($this->request->post['lastkana']) < 1) || (utf8_strlen($this->request->post['lastkana']) > 32)) {
+			  		$this->error['lastkana'] = $this->language->get('error_lastkana');
+				}
+			]]></add>
+		</operation>
+    </file>
+	<file name="admin/controller/sale/customer.php">
+		<operation>
+			<search position="before"><![CDATA[
+				$this->data['entry_firstname'] = $this->language->get('entry_firstname');
+			]]></search>
+			<add><![CDATA[
+				$this->data['entry_firstkana'] = $this->language->get('entry_firstkana');
+				$this->data['entry_lastkana'] = $this->language->get('entry_lastkana');
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				if (isset($this->error['firstname'])) {
+			]]></search>
+			<add><![CDATA[
+				if (isset($this->error['firstkana'])) {
+					$this->data['error_firstkana'] = $this->error['firstkana'];
+				} else {
+					$this->data['error_firstkana'] = '';
+				}
+				if (isset($this->error['lastkana'])) {
+					$this->data['error_lastkana'] = $this->error['lastkana'];
+				} else {
+					$this->data['error_lastkana'] = '';
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				if (isset($this->error['address_firstname'])) {
+			]]></search>
+			<add><![CDATA[
+				if (isset($this->error['address_firstkana'])) {
+					$this->data['error_address_firstkana'] = $this->error['address_firstkana'];
+				} else {
+					$this->data['error_address_firstkana'] = '';
+				}
+				if (isset($this->error['address_lastkana'])) {
+					$this->data['error_address_lastkana'] = $this->error['address_lastkana'];
+				} else {
+					$this->data['error_address_lastkana'] = '';
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				if (isset($this->request->post['firstname'])) {
+			]]></search>
+			<add><![CDATA[
+				if (isset($this->request->post['firstkana'])) {
+					$this->data['firstkana'] = $this->request->post['firstkana'];
+				} elseif (isset($customer_info)) {
+					$this->data['firstkana'] = $customer_info['firstkana'];
+				} else {
+					$this->data['firstkana'] = '';
+				}
+				if (isset($this->request->post['lastkana'])) {
+					$this->data['lastkana'] = $this->request->post['lastkana'];
+				} elseif (isset($customer_info)) {
+					$this->data['lastkana'] = $customer_info['lastkana'];
+				} else {
+					$this->data['lastkana'] = '';
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				private function validateForm() {
+			]]></search>
+			<add><![CDATA[
+				if ((utf8_strlen($this->request->post['firstkana']) < 1) || (utf8_strlen($this->request->post['firstkana']) > 32)) {
+			  		$this->error['firstkana'] = $this->language->get('error_firstkana');
+				}
+				if ((utf8_strlen($this->request->post['lastkana']) < 1) || (utf8_strlen($this->request->post['lastkana']) > 32)) {
+			  		$this->error['lastkana'] = $this->language->get('error_lastkana');
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				foreach ($this->request->post['address'] as $key => $value) {
+			]]></search>
+			<add><![CDATA[
+				if ((utf8_strlen($value['firstkana']) < 1) || (utf8_strlen($value['firstkana']) > 32)) {
+					$this->error['address_firstkana'][$key] = $this->language->get('error_firstkana');
+				}
+				if ((utf8_strlen($value['lastkana']) < 1) || (utf8_strlen($value['lastkana']) > 32)) {
+					$this->error['address_lastkana'][$key] = $this->language->get('error_lastkana');
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				$json[] = array(
+			]]></search>
+			<add><![CDATA[
+				'firstkana' => $result['firstkana'],
+				'lastkana' => $result['lastkana'],
+			]]></add>
+		</operation>
+    </file>
+	<file name="admin/controller/sale/order.php">
+		<operation>
+			<search position="before"><![CDATA[
+				$this->data['entry_firstname'] = $this->language->get('entry_firstname');
+			]]></search>
+			<add><![CDATA[
+				$this->data['entry_firstkana'] = $this->language->get('entry_firstkana');
+				$this->data['entry_lastkana'] = $this->language->get('entry_lastkana');
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				if (isset($this->error['firstname'])) {
+			]]></search>
+			<add><![CDATA[
+				if (isset($this->error['firstkana'])) {
+					$this->data['error_firstkana'] = $this->error['firstkana'];
+				} else {
+					$this->data['error_firstkana'] = '';
+				}
+				if (isset($this->error['lastkana'])) {
+					$this->data['error_lastkana'] = $this->error['lastkana'];
+				} else {
+					$this->data['error_lastkana'] = '';
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				if (isset($this->error['payment_firstname'])) {
+			]]></search>
+			<add><![CDATA[
+				if (isset($this->error['payment_firstkana'])) {
+					$this->data['error_payment_firstkana'] = $this->error['payment_firstkana'];
+				} else {
+					$this->data['error_payment_firstkana'] = '';
+				}
+				if (isset($this->error['payment_lastkana'])) {
+					$this->data['error_payment_lastkana'] = $this->error['payment_lastkana'];
+				} else {
+					$this->data['error_payment_lastkana'] = '';
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				if (isset($this->error['shipping_firstname'])) {
+			]]></search>
+			<add><![CDATA[
+				if (isset($this->error['shipping_firstkana'])) {
+					$this->data['error_shipping_firstkana'] = $this->error['shipping_firstkana'];
+				} else {
+					$this->data['error_shipping_firstkana'] = '';
+				}
+				if (isset($this->error['shipping_lastkana'])) {
+					$this->data['error_shipping_lastkana'] = $this->error['shipping_lastkana'];
+				} else {
+					$this->data['error_shipping_lastkana'] = '';
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				if (isset($this->request->post['firstname'])) {
+			]]></search>
+			<add><![CDATA[
+				if (isset($this->request->post['firstkana'])) {
+					$this->data['firstkana'] = $this->request->post['firstkana'];
+				} elseif (!empty($order_info)) {
+					$this->data['firstkana'] = $order_info['firstkana'];
+				} else {
+					$this->data['firstkana'] = '';
+				}
+				if (isset($this->request->post['lastkana'])) {
+					$this->data['lastkana'] = $this->request->post['lastkana'];
+				} elseif (!empty($order_info)) {
+					$this->data['lastkana'] = $order_info['lastkana'];
+				} else {
+					$this->data['lastkana'] = '';
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				if (isset($this->request->post['payment_firstname'])) {
+			]]></search>
+			<add><![CDATA[
+				if (isset($this->request->post['payment_firstkana'])) {
+					$this->data['payment_firstkana'] = $this->request->post['payment_firstkana'];
+				} elseif (!empty($order_info)) {
+					$this->data['payment_firstkana'] = $order_info['payment_firstkana'];
+				} else {
+					$this->data['payment_firstkana'] = '';
+				}
+				if (isset($this->request->post['payment_lastkana'])) {
+					$this->data['payment_lastkana'] = $this->request->post['payment_lastkana'];
+				} elseif (!empty($order_info)) {
+					$this->data['payment_lastkana'] = $order_info['payment_lastkana'];
+				} else {
+					$this->data['payment_lastkana'] = '';
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				if (isset($this->request->post['shipping_firstname'])) {
+			]]></search>
+			<add><![CDATA[
+				if (isset($this->request->post['shipping_firstkana'])) {
+					$this->data['shipping_firstkana'] = $this->request->post['shipping_firstkana'];
+				} elseif (!empty($order_info)) {
+					$this->data['shipping_firstkana'] = $order_info['shipping_firstkana'];
+				} else {
+					$this->data['shipping_firstkana'] = '';
+				}
+				if (isset($this->request->post['shipping_lastkana'])) {
+					$this->data['shipping_lastkana'] = $this->request->post['shipping_lastkana'];
+				} elseif (!empty($order_info)) {
+					$this->data['shipping_lastkana'] = $order_info['shipping_lastkana'];
+				} else {
+					$this->data['shipping_lastkana'] = '';
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				private function validateForm() {
+			]]></search>
+			<add><![CDATA[
+				if ((utf8_strlen($this->request->post['firstkana']) < 1) || (utf8_strlen($this->request->post['firstkana']) > 32)) {
+			  		$this->error['firstkana'] = $this->language->get('error_firstkana');
+				}
+				if ((utf8_strlen($this->request->post['lastkana']) < 1) || (utf8_strlen($this->request->post['lastkana']) > 32)) {
+			  		$this->error['lastkana'] = $this->language->get('error_lastkana');
+				}
+				if ((utf8_strlen($this->request->post['payment_firstkana']) < 1) || (utf8_strlen($this->request->post['payment_firstkana']) > 32)) {
+			  		$this->error['payment_firstkana'] = $this->language->get('error_firstkana');
+				}
+				if ((utf8_strlen($this->request->post['payment_lastkana']) < 1) || (utf8_strlen($this->request->post['payment_lastkana']) > 32)) {
+			  		$this->error['payment_lastkana'] = $this->language->get('error_lastkana');
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				if ($shipping) {
+			]]></search>
+			<add><![CDATA[
+    			if ((utf8_strlen($this->request->post['shipping_firstkana']) < 1) || (utf8_strlen($this->request->post['shipping_firstkana']) > 32)) {
+    				$this->error['shipping_firstkana'] = $this->language->get('error_firstkana');
+    			}
+    			if ((utf8_strlen($this->request->post['shipping_lastkana']) < 1) || (utf8_strlen($this->request->post['shipping_lastkana']) > 32)) {
+    				$this->error['shipping_lastkana'] = $this->language->get('error_lastkana');
+    			}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				$this->data['text_firstname'] = $this->language->get('text_firstname');
+			]]></search>
+			<add><![CDATA[
+				$this->data['text_firstkana'] = $this->language->get('text_firstkana');
+				$this->data['text_lastkana'] = $this->language->get('text_lastkana');
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				$this->data['firstname'] = $order_info['firstname'];
+			]]></search>
+			<add><![CDATA[
+				$this->data['firstkana'] = $order_info['firstkana'];
+				$this->data['lastkana'] = $order_info['lastkana'];
+				$this->data['affiliate_firstkana'] = $order_info['affiliate_firstkana'];
+				$this->data['affiliate_lastkana'] = $order_info['affiliate_lastkana'];
+				$this->data['payment_firstkana'] = $order_info['payment_firstkana'];
+				$this->data['payment_lastkana'] = $order_info['payment_lastkana'];
+				$this->data['shipping_firstkana'] = $order_info['shipping_firstkana'];
+				$this->data['shipping_lastkana'] = $order_info['shipping_lastkana'];
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				$find = array(
+			]]></search>
+			<add><![CDATA[
+				'{firstkana}',
+	  			'{lastkana}',
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				'firstname' => $order_info['shipping_firstname'],
+			]]></search>
+			<add><![CDATA[
+				'firstkana' => $order_info['shipping_firstkana'],
+				'lastkana'  => $order_info['shipping_lastkana'],
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				'firstname' => $order_info['payment_firstname'],
+			]]></search>
+			<add><![CDATA[
+				'firstkana' => $order_info['payment_firstkana'],
+				'lastkana'  => $order_info['payment_lastkana'],
+			]]></add>
+		</operation>
+    </file>
+	<file name="admin/controller/sale/return.php">
+		<operation>
+			<search position="before"><![CDATA[
+				$this->data['entry_firstname'] = $this->language->get('entry_firstname');
+			]]></search>
+			<add><![CDATA[
+				$this->data['entry_firstkana'] = $this->language->get('entry_firstkana');
+				$this->data['entry_lastkana'] = $this->language->get('entry_lastkana');
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+				if (isset($this->request->post['firstname'])) {
+			]]></search>
+			<add><![CDATA[
+				if (isset($this->request->post['firstkana'])) {
+					$this->data['firstkana'] = $this->request->post['firstkana'];
+				} elseif (!empty($return_info)) {
+					$this->data['firstkana'] = $return_info['firstkana'];
+				} else {
+					$this->data['firstkana'] = '';
+				}
+				if (isset($this->request->post['lastkana'])) {
+					$this->data['lastkana'] = $this->request->post['lastkana'];
+				} elseif (!empty($return_info)) {
+					$this->data['lastkana'] = $return_info['lastkana'];
+				} else {
+					$this->data['lastkana'] = '';
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				if ($return_info) {
+			]]></search>
+			<add><![CDATA[
+				$this->data['firstkana'] = $return_info['firstkana'];
+				$this->data['lastkana'] = $return_info['lastkana'];
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				private function validateForm() {
+			]]></search>
+			<add><![CDATA[
+				if ((utf8_strlen($this->request->post['firstkana']) < 1) || (utf8_strlen($this->request->post['firstkana']) > 32)) {
+			  		$this->error['firstkana'] = $this->language->get('error_firstkana');
+				}
+				if ((utf8_strlen($this->request->post['lastkana']) < 1) || (utf8_strlen($this->request->post['lastkana']) > 32)) {
+			  		$this->error['lastkana'] = $this->language->get('error_lastkana');
+				}
+			]]></add>
+		</operation>
+    </file>
+	<file name="admin/model/sale/affiliate.php">
+		<operation>
+			<search position="after" offset="1"><![CDATA[
+				public function addAffiliate($data) {
+			]]></search>
+			<add><![CDATA[
+				$affiliate_id = $this->db->getLastId();
+				$this->db->query("INSERT INTO " . DB_PREFIX . "ext_customer SET ext_id = '" . $affiliate_id . "', firstkana = '" . $this->db->escape($data['firstkana']) . "', lastkana = '" . $this->db->escape($data['lastkana']) . "', type = 'affiliate'");
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				public function editAffiliate($data) {
+			]]></search>
+			<add><![CDATA[
+				$this->db->query("UPDATE " . DB_PREFIX . "ext_customer SET firstkana = '" . $this->db->escape($data['firstkana']) . "', lastkana = '" . $this->db->escape($data['lastkana']) . "' WHERE ext_id = '" . (int)$this->affiliate->getId() . "' AND type = 'affiliate'");
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+				return $query->row;
+			]]></search>
+			<add><![CDATA[
+				$affiliate = $query->row;
+				$ext = $this->db->query("SELECT firstkana, lastkana FROM " . DB_PREFIX . "ext_customer WHERE ext_id = '" . $affiliate['affiliate_id'] . "' AND type = 'affiliate'");
+				return array_merge($affiliate, $ext->row);
+			]]></add>
+		</operation>
+    </file>
+	<file name="admin/model/sale/customer.php">
+		<operation>
+			<search position="after"><![CDATA[
+				$customer_id = $this->db->getLastId();
+			]]></search>
+			<add><![CDATA[
+				$this->db->query("INSERT INTO " . DB_PREFIX . "ext_customer SET ext_id = '" . $customer_id . "', firstkana = '" . $this->db->escape($data['firstkana']) . "', lastkana = '" . $this->db->escape($data['lastkana']) . "', type = 'customer'");
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace" offset="1"><![CDATA[
+				if (isset($address['default'])) {
+			]]></search>
+			<add><![CDATA[
+				$address_id = $this->db->getLastId();
+				$this->db->query("INSERT INTO " . DB_PREFIX . "ext_customer SET ext_id = '" . $address_id . "', firstkana = '" . $this->db->escape($data['firstkana']) . "', lastkana = '" . $this->db->escape($data['lastkana']) . "', type = 'address'");
+				if (isset($address['default'])) {
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				public function editCustomer($customer_id, $data) {
+			]]></search>
+			<add><![CDATA[
+				$this->db->query("UPDATE " . DB_PREFIX . "ext_customer SET firstkana = '" . $this->db->escape($data['firstkana']) . "', lastkana = '" . $this->db->escape($data['lastkana']) . "' WHERE ext_id = '" . (int)$customer_id . "' AND type = 'customer'");
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				$address_query->row['lastname'],
+			]]></search>
+			<add><![CDATA[
+				'firstkana' => $address_query->row['firstkana'],
+				'lastkana' => $address_query->row['lastkana'],
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+				return $query->row;
+			]]></search>
+			<add><![CDATA[
+				$customer = $query->row;
+				$ext = $this->db->query("SELECT firstkana, lastkana FROM " . DB_PREFIX . "ext_customer WHERE ext_id = '" . $customer['customer_id'] . "' AND type = 'customer'");
+				return array_merge($customer, $ext->row);
+			]]></add>
+		</operation>
+    </file>
+	<file name="admin/model/sale/order.php">
+		<operation>
+			<search position="after"><![CDATA[
+				$order_id = $this->db->getLastId();
+			]]></search>
+			<add><![CDATA[
+				$this->db->query("INSERT INTO " . DB_PREFIX . "ext_customer SET ext_id = '" . (int)$order_id . "', firstkana = '" . $this->db->escape($data['firstkana']) . "', lastkana = '" . $this->db->escape($data['lastkana']) . "', type = 'order'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "ext_customer SET ext_id = '" . (int)$order_id . "', firstkana = '" . $this->db->escape($data['shipping_firstkana']) . "', lastkana = '" . $this->db->escape($data['shipping_lastkana']) . "', type = 'shipping'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "ext_customer SET ext_id = '" . (int)$order_id . "', firstkana = '" . $this->db->escape($data['payment_firstkana']) . "', lastkana = '" . $this->db->escape($data['payment_lastkana']) . "', type = 'payment'");
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				public function editOrder($order_id, $data) {
+			]]></search>
+			<add><![CDATA[
+				$this->db->query("UPDATE " . DB_PREFIX . "ext_customer SET ext_id = '" . (int)$order_id . "', firstkana = '" . $this->db->escape($data['firstkana']) . "', lastkana = '" . $this->db->escape($data['lastkana']) . "', type = 'order'");
+				$this->db->query("UPDATE " . DB_PREFIX . "ext_customer SET ext_id = '" . (int)$order_id . "', firstkana = '" . $this->db->escape($data['shipping_firstkana']) . "', lastkana = '" . $this->db->escape($data['shipping_lastkana']) . "', type = 'shipping'");
+				$this->db->query("UPDATE " . DB_PREFIX . "ext_customer SET ext_id = '" . (int)$order_id . "', firstkana = '" . $this->db->escape($data['payment_firstkana']) . "', lastkana = '" . $this->db->escape($data['payment_lastkana']) . "', type = 'payment'");
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				$order_query->row['lastname'],
+			]]></search>
+			<add><![CDATA[
+				'firstkana' => $order_query->row['firstkana'],
+				'lastkana'  => $order_query->row['lastkana'],
+				'payment_firstkana' => $order_query->row['payment_firstkana'],
+				'payment_lastkana'  => $order_query->row['payment_lastkana'],
+				'shipping_firstkana' => $order_query->row['shipping_firstkana'],
+				'shipping_lastkana'  => $order_query->row['shipping_lastkana'],
+			]]></add>
+		</operation>
+    </file>
+	<file name="admin/model/sale/return.php">
+		<operation>
+			<search position="after" offset="1"><![CDATA[
+				public function addReturn($data) {
+			]]></search>
+			<add><![CDATA[
+			    $return_id = $this->db->getLastId();
+				$this->db->query("INSERT INTO " . DB_PREFIX . "ext_customer SET ext_id = '" . $return_id . "', firstkana = '" . $this->db->escape($data['firstkana']) . "', lastkana = '" . $this->db->escape($data['lastkana']) . "', type = 'return'");
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				public function editReturn($return_id, $data) {
+			]]></search>
+			<add><![CDATA[
+				$this->db->query("UPDATE " . DB_PREFIX . "ext_customer SET ext_id = '" . $return_id . "', firstkana = '" . $this->db->escape($data['firstkana']) . "', lastkana = '" . $this->db->escape($data['lastkana']) . "', type = 'return'");
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+				FROM `" . DB_PREFIX . "return` r
+			]]></search>
+			<add><![CDATA[
+				ext.firstkana, ext.lastkana FROM `" . DB_PREFIX . "return` r LEFT JOIN `" . DB_PREFIX . "ext_customer ext ON r.return_id = ext.ext_id AND ext.type = 'return'
+			]]></add>
+		</operation>
+    </file>
+</modification>
