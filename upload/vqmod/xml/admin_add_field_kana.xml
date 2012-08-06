@@ -386,6 +386,23 @@
 		</operation>
 		<operation>
 			<search position="before"><![CDATA[
+				if (isset($this->error['firstname'])) {
+			]]></search>
+			<add><![CDATA[
+				if (isset($this->error['firstkana'])) {
+					$this->data['error_firstkana'] = $this->error['firstkana'];
+				} else {
+					$this->data['error_firstkana'] = '';
+				}
+				if (isset($this->error['lastkana'])) {
+					$this->data['error_lastkana'] = $this->error['lastkana'];
+				} else {
+					$this->data['error_lastkana'] = '';
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
 				if (isset($this->request->post['firstname'])) {
 			]]></search>
 			<add><![CDATA[
@@ -440,7 +457,7 @@
 		</operation>
 		<operation>
 			<search position="after"><![CDATA[
-				public function editAffiliate($data) {
+				public function editAffiliate($affiliate_id, $data) {
 			]]></search>
 			<add><![CDATA[
 				$this->db->query("UPDATE " . DB_PREFIX . "ext_customer SET firstkana = '" . $this->db->escape($data['firstkana']) . "', lastkana = '" . $this->db->escape($data['lastkana']) . "' WHERE ext_id = '" . (int)$this->affiliate->getId() . "' AND type = 'affiliate'");
@@ -562,7 +579,7 @@
 				FROM `" . DB_PREFIX . "return` r
 			]]></search>
 			<add><![CDATA[
-				ext.firstkana, ext.lastkana FROM `" . DB_PREFIX . "return` r LEFT JOIN `" . DB_PREFIX . "ext_customer ext ON r.return_id = ext.ext_id AND ext.type = 'return'
+				, ext.firstkana, ext.lastkana FROM `" . DB_PREFIX . "return` r LEFT JOIN `" . DB_PREFIX . "ext_customer` ext ON r.return_id = ext.ext_id AND ext.type = 'return'
 			]]></add>
 		</operation>
     </file>
